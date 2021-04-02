@@ -17,11 +17,18 @@ app.use(bodyParser.json());
 client.connect(err => {
     console.log(err);
   const collection = client.db("freshValleyDB").collection("addProductFV");
+  const OrderCollection = client.db("freshValleyDB").collection("Orderinfo");
 
 app.get("/product", (req, res)=>{
   collection.find()
   .toArray((err, item)=>{
-  console.log(item);
+    res.send(item)
+  })
+})
+
+app.get("/Oder", (req, res)=>{
+  OrderCollection.find()
+  .toArray((err, item)=>{
     res.send(item)
   })
 })
@@ -32,9 +39,17 @@ app.post("/addproduct",(req, res)=>{
   .then(result=>{
     res.send(result.insertedCount > 0)
   })
-
-
 })
+
+app.post("/addorder",(req, res)=>{
+  const product = req.body;
+  OrderCollection.insertOne(product)
+  .then(result=>{
+    res.send(result.insertedCount > 0)
+  })
+})
+
+
 app.get("/", (req, res)=>{
   res.send("hello world")
 })
