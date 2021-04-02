@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 
 client.connect(err => {
     console.log(err);
-  const collection = client.db("freshValleyDB").collection("addProductFV");
-  const OrderCollection = client.db("freshValleyDB").collection("Orderinfo");
+  const collection = client.db("freshStore").collection("addproduct");
+  const OrderCollection = client.db("freshStore").collection("orderinfo");
 
 app.get("/product", (req, res)=>{
   collection.find()
