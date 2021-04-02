@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser =require('body-parser')
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.h8zf7.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://freshValley:9c4ivl4nlpycOT3b@cluster0.h8zf7.mongodb.net/freshStore?retryWrites=true&w=majority`;
 
 const port = process.env.PORT ||4200;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -49,6 +49,9 @@ app.post("/addorder",(req, res)=>{
   })
 })
 
+// app.delete("/delete/:id", (req, res) =>{
+//   console.log(req.params.id);
+// })
 
 app.get("/", (req, res)=>{
   res.send("hello world")
